@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #F3F4F6;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    width: 448px;
+    height: 284px;
+    border-radius: 12px;
+    background-color: white;
+    padding: 24px;
+}
+
+.title {
+    font-size: 18.28px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: 400;
+    padding-bottom: 16px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input input {
+    width: 400px;
+    height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+}
+
+.login-btn {
+    background: #4F46E5;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.link {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    padding-top: 16px;
+}
