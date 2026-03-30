@@ -7,129 +7,129 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    <div class="app">
+    <div class="page">
       <!-- HEADER -->
-      <header class="app-header">
-        <div class="header__wrapper">
-          <div class="header__title">
+      <header class="header">
+        <div class="header-box">
+          <div class="header-title">
             <p>📒 Tài Chính Cá Nhân</p>
           </div>
 
-          <div class="header__actions">
-            <p class="header__account">Tài khoản</p>
-            <p class="header__dropdown"></p>
+          <div class="header-actions">
+            <p class="header-account">Tài khoản</p>
+            <p class="header-arrow"></p>
           </div>
         </div>
       </header>
 
       <!-- BANNER -->
-      <section class="hero">
-        <h2 class="hero__title">🎯 Kiểm soát chi tiêu thông minh</h2>
-        <p class="hero__desc">
+      <section class="banner">
+        <h2 class="banner-title">🎯 Kiểm soát chi tiêu thông minh</h2>
+        <p class="banner-text">
           Theo dõi ngân sách và thu chi hằng tháng dễ dàng
         </p>
       </section>
 
       <!-- MAIN -->
       <main class="main">
-        <div class="main__container">
-          <h1 class="main__title">📊 Quản Lý Tài Chính Cá Nhân</h1>
+        <div class="main-content">
+          <h1 class="main-title">📊 Quản Lý Tài Chính Cá Nhân</h1>
 
           <!-- chọn tháng -->
-          <div class="form-group form-group--date">
+          <div class="input-box month-box">
             <label>📅 Chọn tháng:</label>
             <input type="month" />
           </div>
 
           <!-- ngân sách -->
-          <div class="form-group form-group--budget">
+          <div class="input-box budget-box">
             <label>💰 Ngân sách tháng:</label>
             <input type="number" placeholder="VD: 5000000" />
-            <button class="btn btn--primary">Lưu</button>
+            <button class="button button-blue">Lưu</button>
           </div>
 
           <!-- tiền còn lại -->
-          <div class="summary">
-            <p class="summary__label">Số tiền còn lại</p>
-            <p class="summary__value">0 VND</p>
+          <div class="money-left">
+            <p class="money-left-label">Số tiền còn lại</p>
+            <p class="money-left-value">0 VND</p>
           </div>
 
           <!-- CATEGORY -->
-          <section class="card card--category">
-            <h3 class="card__title">📁 Quản lý danh mục (theo tháng)</h3>
+          <section class="section-box category-box">
+            <h3 class="section-title">💼 Quản lý danh mục (theo tháng)</h3>
 
-            <div class="form-row">
+            <div class="input-row">
               <input type="text" placeholder="Tên danh mục" />
               <input type="text" placeholder="Giới hạn (VND)" />
-              <button class="btn btn--success">Thêm danh mục</button>
+              <button class="button button-green">Thêm danh mục</button>
             </div>
 
-            <ul class="list">
-              <li class="list__item">
+            <ul class="item-list">
+              <li class="item-row">
                 tiền phòng - Giới hạn: 2,000,000 VND
-                <span class="list__actions"><a>Sửa</a> <a>Xóa</a></span>
+                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền ăn - Giới hạn: 1,000,000 VND
-                <span class="list__actions"><a>Sửa</a> <a>Xóa</a></span>
+                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền xăng xe - Giới hạn: 500,000 VND
-                <span class="list__actions"><a>Sửa</a> <a>Xóa</a></span>
+                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền mua sắm - Giới hạn: 1,000,000 VND
-                <span class="list__actions"><a>Sửa</a> <a>Xóa</a></span>
+                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
               </li>
             </ul>
           </section>
 
           <!-- ADD TRANSACTION -->
-          <section class="card card--transaction">
-            <div class="form-row">
+          <section class="section-box transaction-box">
+            <div class="input-row">
               <input type="text" placeholder="Số tiền" />
               <input type="text" placeholder="Tên chi tiêu" />
               <input type="text" placeholder="Ghi chú" />
-              <button class="btn btn--info">Thêm</button>
+              <button class="button button-indigo">Thêm</button>
             </div>
           </section>
 
           <!-- HISTORY -->
-          <section class="card card--history">
-            <h3 class="card__title">📊 Lịch sử giao dịch</h3>
+          <section class="section-box history-box">
+            <h3 class="section-title">📊 Lịch sử giao dịch</h3>
 
-            <div class="form-row">
+            <div class="input-row">
               <input type="text" placeholder="🔍 tìm nội dung" />
-              <button class="btn btn--icon">🔎</button>
-              <button class="btn btn--secondary">Sắp xếp theo giá</button>
+              <button class="button button-icon">🔎</button>
+              <button class="button button-gray">Sắp xếp theo giá</button>
             </div>
 
-            <ul class="list">
-              <li class="list__item">
+            <ul class="item-list">
+              <li class="item-row">
                 tiền phòng - đóng tiền phòng tháng 3: 2,000,000 VND
-                <span class="text-danger">Xóa</span>
+                <span class="text-red">Xóa</span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền xăng xe - đổ xăng 21/3: 100,000 VND
-                <span class="text-danger">Xóa</span>
+                <span class="text-red">Xóa</span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền ăn - trà sữa: 30,000 VND
-                <span class="text-danger">Xóa</span>
+                <span class="text-red">Xóa</span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền ăn - bánh mì: 30,000 VND
-                <span class="text-danger">Xóa</span>
+                <span class="text-red">Xóa</span>
               </li>
-              <li class="list__item">
+              <li class="item-row">
                 tiền ăn - tiền nhậu: 1,000,000 VND
-                <span class="text-danger">Xóa</span>
+                <span class="text-red">Xóa</span>
               </li>
             </ul>
 
-            <div class="pagination">
+            <div class="page-number">
               <button>Previous</button>
-              <button class="active">1</button>
+              <button class="current-page">1</button>
               <button>2</button>
               <button>3</button>
               <button>Next</button>
@@ -137,45 +137,46 @@
           </section>
 
           <!-- ALERT -->
-          <div class="alert alert--danger">
+          <div class="notice notice-red">
             Danh mục "tiền ăn" đã vượt giới hạn: 1,060,000 / 1,000,000 VND
           </div>
 
           <!-- STATS -->
-          <section class="card card--stats">
-            <h3 class="card__title">📅 Thống kê chi tiêu các tháng</h3>
-
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Tháng</th>
-                  <th>Chi tiêu</th>
-                  <th>Ngân sách</th>
-                  <th>Trạng thái</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2025-03</td>
-                  <td>2,150,000 VND</td>
-                  <td>5,000,000</td>
-                  <td class="text-success">✔ Đạt</td>
-                </tr>
-                <tr>
-                  <td>2025-04</td>
-                  <td>3,100,000 VND</td>
-                  <td>3,000,000</td>
-                  <td class="text-danger">Vượt</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
         </div>
       </main>
 
+      <section class="section-box stats-box">
+        <h3 class="section-title">📅 Thống kê chi tiêu các tháng</h3>
+
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Tháng</th>
+              <th>Chi tiêu</th>
+              <th>Ngân sách</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-03</td>
+              <td>2,150,000 VND</td>
+              <td>5,000,000</td>
+              <td class="text-green">✔ Đạt</td>
+            </tr>
+            <tr>
+              <td>2025-04</td>
+              <td>3,100,000 VND</td>
+              <td>3,000,000</td>
+              <td class="text-red">Vượt</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
       <!-- FOOTER -->
-      <footer class="app-footer">
-        <div class="footer__wrapper">
+      <footer class="footer">
+        <div class="footer-box">
           <p>© 2026 Quản Lý Tài Chính Cá Nhân. by Hphong!</p>
         </div>
       </footer>
