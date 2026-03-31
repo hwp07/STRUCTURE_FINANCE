@@ -7,31 +7,38 @@
     <link rel="stylesheet" href="../css/register.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="register">
-        <div class="title">
-          <p>Đăng ký tài khoản</p>
-        </div>
+    <div class="background">
+      <div class="container">
+        <div class="register">
+          <div class="title">
+            <p>Sign Up</p>
+            <p class="successfully">Sign Up Successfully</p>
+          </div>
 
-        <div class="input">
-          <form action="">
+          <form>
             <div class="input">
-              <input type="text" placeholder="Tên tài khoản" />
-              <input type="password" name="" id="" placeholder="Mật khẩu" />
-              <input
-                type="password"
-                name=""
-                id=""
-                placeholder="Xác nhận mật khẩu"
-              />
-              <a class="register-btn" href="login.html">Đăng ký</a>
+              <div class="form-group">
+                <input type="email" placeholder="Email here..." />
+                <p class="err">Please enter your email...</p>
+              </div>
+
+              <div class="form-group">
+                <input type="password" placeholder="Password here..." />
+                <p class="err">Please enter your password...</p>
+              </div>
+
+              <div class="form-group">
+                <input type="password" placeholder="Confirm password here..." />
+                <p class="err">Please enter your confirm password...</p>
+              </div>
+              <a class="register-btn" href="login.html">Sign Up</a>
             </div>
           </form>
-        </div>
 
-        <div class="link">
-          <p>Đã có tài khoản?</p>
-          <a href="login.html">Đăng nhập</a>
+          <div class="link">
+            <p>You have account?</p>
+            <a href="login.html">Sign in</a>
+          </div>
         </div>
       </div>
     </div>

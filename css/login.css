@@ -6,23 +6,30 @@
 
 body {
     height: 100vh;
-    background-color: #F3F4F6;
     font-family: 'Segoe UI', sans-serif;
 }
 
-.container {
+.background {
     height: 100%;
+    background-image: url("../assets/images/image.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .login {
-    width: 448px;
-    height: 284px;
+    min-width: 448px;
     border-radius: 12px;
     background-color: white;
     padding: 24px;
+
 }
 
 .title {
@@ -36,15 +43,29 @@ body {
 .input {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 25px;
+    position: relative;
 }
 
-.input input {
-    width: 400px;
-    height: 42px;
+.form-group input {
+    min-height: 42px;
     padding: 9px 12px;
     border: 1px solid #E5E7EB;
     border-radius: 4px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.err {
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    margin-top: 40px;
+    display: none;
 }
 
 .login-btn {
@@ -58,7 +79,18 @@ body {
 
 .link {
     display: flex;
-    gap: 3px;
+    gap: 5px;
     justify-content: center;
-    padding-top: 16px;
+    padding-top: 11px;
+}
+
+
+.link a {
+    text-decoration: none;
+}
+
+.successfully {
+    color: #24A600;
+    font-size: 15px;
+    display: none;
 }

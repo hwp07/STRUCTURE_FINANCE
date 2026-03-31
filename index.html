@@ -8,21 +8,38 @@
   </head>
   <body>
     <div class="page">
-      <!-- HEADER -->
       <header class="header">
         <div class="header-box">
           <div class="header-title">
             <p>📒 Tài Chính Cá Nhân</p>
           </div>
 
-          <div class="header-actions">
-            <p class="header-account">Tài khoản</p>
-            <p class="header-arrow"></p>
+          <div class="header-option">
+            <p>Tài khoản</p>
+            <div class="icon">
+              <img src="./assets/images/Vector.png" alt="" />
+            </div>
           </div>
         </div>
       </header>
 
-      <!-- BANNER -->
+      <div class="taskbar">
+        <div class="taskbar-items">
+          <img src="./assets/images/Vector (1).png" alt="" />
+          <a href="./index.html">Information</a>
+        </div>
+
+        <div class="taskbar-items">
+          <img src="./assets/images/Vector (2).png" alt="" />
+          <a href="">Category</a>
+        </div>
+
+        <div class="taskbar-items">
+          <img src="./assets/images/Vector (3).png" alt="" />
+          <a href="">History</a>
+        </div>
+      </div>
+
       <section class="banner">
         <h2 class="banner-title">🎯 Kiểm soát chi tiêu thông minh</h2>
         <p class="banner-text">
@@ -30,156 +47,61 @@
         </p>
       </section>
 
-      <!-- MAIN -->
       <main class="main">
         <div class="main-content">
-          <h1 class="main-title">📊 Quản Lý Tài Chính Cá Nhân</h1>
+          <p class="main-title">📊 Quản Lý Tài Chính Cá Nhân</p>
 
-          <!-- chọn tháng -->
-          <div class="input-box month-box">
-            <label>📅 Chọn tháng:</label>
-            <input type="month" />
-          </div>
-
-          <!-- ngân sách -->
-          <div class="input-box budget-box">
-            <label>💰 Ngân sách tháng:</label>
-            <input type="number" placeholder="VD: 5000000" />
-            <button class="button button-blue">Lưu</button>
-          </div>
-
-          <!-- tiền còn lại -->
           <div class="money-left">
             <p class="money-left-label">Số tiền còn lại</p>
             <p class="money-left-value">0 VND</p>
           </div>
 
-          <!-- CATEGORY -->
-          <section class="section-box category-box">
-            <h3 class="section-title">💼 Quản lý danh mục (theo tháng)</h3>
-
-            <div class="input-row">
-              <input type="text" placeholder="Tên danh mục" />
-              <input type="text" placeholder="Giới hạn (VND)" />
-              <button class="button button-green">Thêm danh mục</button>
-            </div>
-
-            <ul class="item-list">
-              <li class="item-row">
-                tiền phòng - Giới hạn: 2,000,000 VND
-                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
-              </li>
-              <li class="item-row">
-                tiền ăn - Giới hạn: 1,000,000 VND
-                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
-              </li>
-              <li class="item-row">
-                tiền xăng xe - Giới hạn: 500,000 VND
-                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
-              </li>
-              <li class="item-row">
-                tiền mua sắm - Giới hạn: 1,000,000 VND
-                <span class="item-actions"><a>Sửa</a> <a>Xóa</a></span>
-              </li>
-            </ul>
-          </section>
-
-          <!-- ADD TRANSACTION -->
-          <section class="section-box transaction-box">
-            <div class="input-row">
-              <input type="text" placeholder="Số tiền" />
-              <input type="text" placeholder="Tên chi tiêu" />
-              <input type="text" placeholder="Ghi chú" />
-              <button class="button button-indigo">Thêm</button>
-            </div>
-          </section>
-
-          <!-- HISTORY -->
-          <section class="section-box history-box">
-            <h3 class="section-title">📊 Lịch sử giao dịch</h3>
-
-            <div class="input-row">
-              <input type="text" placeholder="🔍 tìm nội dung" />
-              <button class="button button-icon">🔎</button>
-              <button class="button button-gray">Sắp xếp theo giá</button>
-            </div>
-
-            <ul class="item-list">
-              <li class="item-row">
-                tiền phòng - đóng tiền phòng tháng 3: 2,000,000 VND
-                <span class="text-red">Xóa</span>
-              </li>
-              <li class="item-row">
-                tiền xăng xe - đổ xăng 21/3: 100,000 VND
-                <span class="text-red">Xóa</span>
-              </li>
-              <li class="item-row">
-                tiền ăn - trà sữa: 30,000 VND
-                <span class="text-red">Xóa</span>
-              </li>
-              <li class="item-row">
-                tiền ăn - bánh mì: 30,000 VND
-                <span class="text-red">Xóa</span>
-              </li>
-              <li class="item-row">
-                tiền ăn - tiền nhậu: 1,000,000 VND
-                <span class="text-red">Xóa</span>
-              </li>
-            </ul>
-
-            <div class="page-number">
-              <button>Previous</button>
-              <button class="current-page">1</button>
-              <button>2</button>
-              <button>3</button>
-              <button>Next</button>
-            </div>
-          </section>
-
-          <!-- ALERT -->
-          <div class="notice notice-red">
-            Danh mục "tiền ăn" đã vượt giới hạn: 1,060,000 / 1,000,000 VND
+          <div class="input-box month-box">
+            <label>📅 Chọn tháng:</label>
+            <input type="month" />
           </div>
 
-          <!-- STATS -->
+          <div class="input-box budget-box">
+            <label>💰 Ngân sách tháng:</label>
+            <input type="number" placeholder="VD: 5000000" />
+            <button class="button-save">Lưu</button>
+          </div>
+
+          <p class="extra-title">Quản Lý Thông tin cá nhân</p>
+          <div class="infor-user">
+            <form class="form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Name <span>*</span></label>
+                  <input type="text" placeholder="Nguyen Van A" />
+                </div>
+
+                <div class="form-group">
+                  <label>Email <span>*</span></label>
+                  <input type="email" placeholder="nguyenvana@gmail.com" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Phone <span>*</span></label>
+                  <input type="text" placeholder="0987654321" />
+                </div>
+
+                <div class="form-group">
+                  <label>Gender <span>*</span></label>
+                  <input type="text" placeholder="Male" />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn outline">Change Information</button>
+                <button class="btn outline">Change Password</button>
+              </div>
+            </form>
+          </div>
         </div>
       </main>
-
-      <section class="section-box stats-box">
-        <h3 class="section-title">📅 Thống kê chi tiêu các tháng</h3>
-
-        <table class="stats-table">
-          <thead>
-            <tr>
-              <th>Tháng</th>
-              <th>Chi tiêu</th>
-              <th>Ngân sách</th>
-              <th>Trạng thái</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2025-03</td>
-              <td>2,150,000 VND</td>
-              <td>5,000,000</td>
-              <td class="text-green">✔ Đạt</td>
-            </tr>
-            <tr>
-              <td>2025-04</td>
-              <td>3,100,000 VND</td>
-              <td>3,000,000</td>
-              <td class="text-red">Vượt</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="footer">
-        <div class="footer-box">
-          <p>© 2026 Quản Lý Tài Chính Cá Nhân. by Hphong!</p>
-        </div>
-      </footer>
     </div>
   </body>
 </html>
