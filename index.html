@@ -15,13 +15,26 @@
           </div>
 
           <div class="header-option">
-            <p>Tài khoản</p>
-            <div class="icon">
-              <img src="./assets/images/Vector.png" alt="" />
+            <div class="option">
+              <select name="" id="optionHeader" onchange="handleOption()">
+                <option value="">Tài khoản</option>
+                <option value="logout">Đăng xuất</option>
+              </select>
             </div>
           </div>
         </div>
       </header>
+
+      <div class="logout-overlay" id="logout-overlay">
+        <div class="logout">
+          <p class="logout-title">Bạn có chắc chắn muốn đăng xuất không?</p>
+
+          <div class="logout-confirm">
+            <button class="confirm-btn" id="confirm-btn">Có</button>
+            <button class="confirm-btn" id="cancel-btn">Không</button>
+          </div>
+        </div>
+      </div>
 
       <div class="taskbar">
         <div class="taskbar-items">
@@ -103,5 +116,7 @@
         </div>
       </main>
     </div>
+
+    <script src="./js/index.js"></script>
   </body>
 </html>

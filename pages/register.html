@@ -7,40 +7,64 @@
     <link rel="stylesheet" href="../css/register.css" />
   </head>
   <body>
-    <div class="background">
-      <div class="container">
-        <div class="register">
-          <div class="title">
+    <div class="background" id="background">
+      <div class="container" id="container">
+        <div class="register" id="register">
+          <div class="title" id="title">
             <p>Sign Up</p>
-            <p class="successfully">Sign Up Successfully</p>
+            <p class="successfully" id="success-message">
+              Sign Up Successfully
+            </p>
           </div>
 
-          <form>
-            <div class="input">
-              <div class="form-group">
-                <input type="email" placeholder="Email here..." />
-                <p class="err">Please enter your email...</p>
+          <form id="register-form">
+            <div class="input" id="input-group">
+              <div class="form-group" id="email-group">
+                <input id="email" type="email" placeholder="Email here..." />
+                <p class="err" id="email-error">Please enter your email...</p>
               </div>
 
-              <div class="form-group">
-                <input type="password" placeholder="Password here..." />
-                <p class="err">Please enter your password...</p>
+              <div class="form-group" id="password-group">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Password here..."
+                />
+                <p class="err" id="password-error">
+                  Please enter your password...
+                </p>
               </div>
 
-              <div class="form-group">
-                <input type="password" placeholder="Confirm password here..." />
-                <p class="err">Please enter your confirm password...</p>
+              <div class="form-group" id="confirm-password-group">
+                <input
+                  id="confirm-password"
+                  type="password"
+                  placeholder="Confirm password here..."
+                />
+                <p class="err" id="confirm-password-error">
+                  Please enter your confirm password...
+                </p>
               </div>
-              <a class="register-btn" href="login.html">Sign Up</a>
+
+              <button
+                type="submit"
+                class="register-btn"
+                id="register-btn"
+                onclick="handle(event)"
+              >
+                Sign Up
+              </button>
             </div>
           </form>
 
-          <div class="link">
+          <div class="link" id="login-link">
             <p>You have account?</p>
-            <a href="login.html">Sign in</a>
+            <a id="signin-link" href="login.html">Sign in</a>
           </div>
         </div>
       </div>
     </div>
+
+    <script src="../js/register.js"></script>
   </body>
 </html>

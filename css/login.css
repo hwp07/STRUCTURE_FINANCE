@@ -60,12 +60,24 @@ body {
     gap: 4px;
 }
 
+.form-group input:focus {
+    outline: none;
+}
+
 .err {
     color: red;
     font-size: 14px;
     position: absolute;
-    margin-top: 40px;
+    margin-top: 44px;
     display: none;
+}
+
+.input-error {
+    border: 1px solid red !important;
+}
+
+.input-error::placeholder {
+    color: red;
 }
 
 .login-btn {
@@ -75,6 +87,7 @@ body {
     text-align: center;
     padding: 12px;
     text-decoration: none;
+    border: none;
 }
 
 .link {

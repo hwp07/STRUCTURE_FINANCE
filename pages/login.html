@@ -12,31 +12,46 @@
         <div class="login">
           <div class="title">
             <p>🔐 Sign In</p>
-            <p class="successfully">Sign In Successfully</p>
+            <p class="successfully" id="success-msg">Sign In Successfully</p>
           </div>
 
-          <form>
+          <form id="login-form">
             <div class="input">
-              <div class="form-group">
-                <input type="email" placeholder="Email here..." />
-                <p class="err">Please enter your email...</p>
+              <div class="form-group" id="email-group">
+                <input type="email" id="email" placeholder="Email here..." />
+                <p class="err" id="email-err">Please enter your email...</p>
               </div>
 
-              <div class="form-group">
-                <input type="password" placeholder="Password here..." />
-                <p class="err">Please enter your password...</p>
+              <div class="form-group" id="password-group">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Password here..."
+                />
+                <p class="err" id="password-err">
+                  Please enter your password...
+                </p>
               </div>
 
-              <a class="login-btn" href="register.html">Sign In</a>
+              <button
+                class="login-btn"
+                id="login-btn"
+                type="submit"
+                onclick="handle(event)"
+              >
+                Sign In
+              </button>
             </div>
           </form>
 
           <div class="link">
             <p>You don't have account?</p>
-            <a href="register.html">Sign Up Now</a>
+            <a href="register.html" id="signup-link">Sign Up Now</a>
           </div>
         </div>
       </div>
     </div>
+
+    <script src="../js/login.js"></script>
   </body>
 </html>

@@ -155,13 +155,15 @@ input {
     font-size: 16px;
     line-height: 16px;
     font-weight: 400;
-    padding: 13px;
+    padding: 10px;
+
 }
 
 .input-row {
     display: flex;
     gap: 18px;
     border-radius: 6px;
+    max-height: 41px;
 }
 
 
@@ -187,14 +189,13 @@ input {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    max-height: 38px;
 }
 
 .container-header p {
     font-weight: 400;
     font-size: 17.72px;
     line-height: 28px;
-
-
 }
 
 .actions-top {
@@ -224,6 +225,13 @@ input {
     border: 1px solid #DEE2E6;
     border-radius: 8px;
     padding: 11px;
+    width: 48px;
+    height: 100%;
+}
+
+.search-btn img {
+    width: 16px;
+    height: 16px;
 }
 
 table {
