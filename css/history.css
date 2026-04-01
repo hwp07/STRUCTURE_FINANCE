@@ -148,6 +148,16 @@ input {
     border-radius: 12px;
 }
 
+.section-box select {
+    border-radius: 6px;
+    border: 1px solid #DEE2E6;
+    color: black;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    padding: 13px;
+}
+
 .input-row {
     display: flex;
     gap: 18px;
