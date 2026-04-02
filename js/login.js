@@ -7,11 +7,16 @@ let loginFormEl = document.getElementById("login-form");
 let loginErrorEl = document.getElementById("login-err");
 
 function redirectIfLoggedIn() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (currentUser) {
     window.location.replace("../index.html");
   }
+}
+
+function revealPage() {
+  document.documentElement.classList.remove("preload");
+  document.documentElement.classList.add("page-ready");
 }
 
 function resetInputError(inputEl) {
@@ -58,7 +63,7 @@ function handle(e) {
   if (!isValid) return;
 
   // SUCCESS
-  localStorage.setItem("currentUser", JSON.stringify(userByEmail));
+  sessionStorage.setItem("currentUser", JSON.stringify(userByEmail));
 
   successMessageEl.style.display = "block";
 
@@ -68,7 +73,11 @@ function handle(e) {
 }
 
 redirectIfLoggedIn();
-window.addEventListener("pageshow", redirectIfLoggedIn);
+revealPage();
+window.addEventListener("pageshow", function () {
+  redirectIfLoggedIn();
+  revealPage();
+});
 loginFormEl.addEventListener("submit", handle);
 emailEl.addEventListener("focus", function () {
   resetInputError(emailEl);

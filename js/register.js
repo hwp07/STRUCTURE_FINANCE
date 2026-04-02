@@ -15,11 +15,16 @@ const confirmPasswordErr = document.getElementById("confirm-password-error");
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function redirectIfLoggedIn() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (currentUser) {
     window.location.replace("../index.html");
   }
+}
+
+function revealPage() {
+  document.documentElement.classList.remove("preload");
+  document.documentElement.classList.add("page-ready");
 }
 
 // Helper
@@ -104,7 +109,11 @@ function handle(e) {
 }
 
 redirectIfLoggedIn();
-window.addEventListener("pageshow", redirectIfLoggedIn);
+revealPage();
+window.addEventListener("pageshow", function () {
+  redirectIfLoggedIn();
+  revealPage();
+});
 registerFormEl.addEventListener("submit", handle);
 emailEl.addEventListener("focus", function () {
   resetFieldError(emailEl, emailErr);

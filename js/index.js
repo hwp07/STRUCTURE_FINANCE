@@ -40,7 +40,7 @@
 // ];
 // localStorage.setItem("monthlyCategories", JSON.stringify("monthlyCategories"));
 
-let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
 let monthlyCategories =
   JSON.parse(localStorage.getItem("monthlyCategories")) || [];
@@ -66,20 +66,27 @@ cancelBtn.addEventListener("click", function () {
 
 // Nhấn "Có" → logout
 confirmBtn.addEventListener("click", function () {
-  localStorage.removeItem("currentUser");
+  sessionStorage.removeItem("currentUser");
   window.location.replace(loginPath);
 });
 
 function checkAuth() {
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (!currentUser) {
     window.location.replace(loginPath);
     return;
   }
+}
 
-  document.documentElement.classList.remove("auth-pending");
+function revealPage() {
+  document.documentElement.classList.remove("preload");
+  document.documentElement.classList.add("page-ready");
 }
 
 checkAuth();
-window.addEventListener("pageshow", checkAuth);
+revealPage();
+window.addEventListener("pageshow", function () {
+  checkAuth();
+  revealPage();
+});

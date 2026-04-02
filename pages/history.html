@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Structure Finance</title>
     <style>
-      html.auth-pending body {
+      html.preload body {
+        opacity: 0;
         visibility: hidden;
+      }
+
+      html.page-ready body {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.15s ease;
       }
     </style>
     <script>
       (function () {
-        document.documentElement.classList.add("auth-pending");
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        document.documentElement.classList.add("preload");
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
         if (!currentUser) {
           window.location.replace("./login.html");
-          return;
         }
-
-        document.documentElement.classList.remove("auth-pending");
       })();
     </script>
     <link rel="stylesheet" href="../css/history.css" />
