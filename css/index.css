@@ -231,7 +231,7 @@ input {
     gap: 20px;
     height: 80px;
     padding: 0 25px;
-    border-radius: 16px;
+    border-radius: 5px;
     background: #f3f4f6;
     border: 2px solid transparent;
     transition: 0.3s;

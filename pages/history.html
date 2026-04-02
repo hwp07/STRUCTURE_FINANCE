@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Structure Finance</title>
+    <style>
+      html.auth-pending body {
+        visibility: hidden;
+      }
+    </style>
+    <script>
+      (function () {
+        document.documentElement.classList.add("auth-pending");
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!currentUser) {
+          window.location.replace("./login.html");
+          return;
+        }
+
+        document.documentElement.classList.remove("auth-pending");
+      })();
+    </script>
     <link rel="stylesheet" href="../css/history.css" />
   </head>
   <body>
@@ -15,13 +33,26 @@
           </div>
 
           <div class="header-option">
-            <p>Tài khoản</p>
-            <div class="icon-header">
-              <img src="../assets/images/Vector.png" alt="" />
+            <div class="option">
+              <select name="" id="optionHeader" onchange="handleOption()">
+                <option value="">Tài khoản</option>
+                <option value="logout">Đăng xuất</option>
+              </select>
             </div>
           </div>
         </div>
       </header>
+
+      <div class="logout-overlay" id="logout-overlay">
+        <div class="logout">
+          <p class="logout-title">Bạn có chắc chắn muốn đăng xuất không?</p>
+
+          <div class="logout-confirm">
+            <button class="confirm-btn" id="confirm-btn">Có</button>
+            <button class="confirm-btn" id="cancel-btn">Không</button>
+          </div>
+        </div>
+      </div>
 
       <div class="taskbar">
         <div class="taskbar-items">
@@ -170,5 +201,7 @@
         </div>
       </main>
     </div>
+
+    <script src="../js/index.js"></script>
   </body>
 </html>

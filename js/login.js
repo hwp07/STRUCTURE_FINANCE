@@ -3,9 +3,27 @@ let user = JSON.parse(localStorage.getItem("user")) || [];
 let successMessageEl = document.getElementById("success-msg");
 let emailEl = document.getElementById("email");
 let passwordEl = document.getElementById("password");
+let loginFormEl = document.getElementById("login-form");
+let loginErrorEl = document.getElementById("login-err");
 
-let emailErrorEl = document.getElementById("email-err");
-let passwordErrorEl = document.getElementById("password-err");
+function redirectIfLoggedIn() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+    window.location.replace("../index.html");
+  }
+}
+
+function resetInputError(inputEl) {
+  inputEl.classList.remove("input-error");
+
+  if (
+    !emailEl.classList.contains("input-error") &&
+    !passwordEl.classList.contains("input-error")
+  ) {
+    loginErrorEl.style.display = "none";
+  }
+}
 
 function handle(e) {
   e.preventDefault();
@@ -18,46 +36,43 @@ function handle(e) {
   let isValid = true;
 
   // RESET
-  emailErrorEl.style.display = "none";
-  passwordErrorEl.style.display = "none";
+  loginErrorEl.style.display = "none";
   emailEl.classList.remove("input-error");
   passwordEl.classList.remove("input-error");
 
-  // EMAIL
-  if (!emailInput) {
-    emailErrorEl.innerText = "Please enter your email...";
-    emailErrorEl.style.display = "block";
+  if (!emailInput || !passwordInput) {
+    loginErrorEl.innerText = "Please enter your email and password...";
+    loginErrorEl.style.display = "block";
+    if (!emailInput) emailEl.classList.add("input-error");
+    if (!passwordInput) passwordEl.classList.add("input-error");
+    isValid = false;
+  } else if (!userByEmail || userByEmail.password !== passwordInput) {
+    loginErrorEl.innerText = "Email or password is incorrect";
+    loginErrorEl.style.display = "block";
     emailEl.classList.add("input-error");
-    isValid = false;
-  } else if (!userByEmail) {
-    emailErrorEl.innerText = "Email does not exist";
-    emailErrorEl.style.display = "block";
-    emailEl.classList.add("input-error");
-    isValid = false;
-  }
-
-  // PASSWORD
-  if (!passwordInput) {
-    passwordErrorEl.innerText = "Please enter your password...";
-    passwordErrorEl.style.display = "block";
-    passwordEl.classList.add("input-error");
-    isValid = false;
-  } else if (userByEmail && userByEmail.password !== passwordInput) {
-    passwordErrorEl.innerText = "Password is incorrect";
-    passwordErrorEl.style.display = "block";
     passwordEl.classList.add("input-error");
     isValid = false;
   }
 
-  // ❗ CHỈ chạy khi tất cả hợp lệ
+  // CHỈ chạy khi tất cả hợp lệ
   if (!isValid) return;
 
   // SUCCESS
-  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("currentUser", JSON.stringify(userByEmail));
 
   successMessageEl.style.display = "block";
 
   setTimeout(() => {
-    window.location.href = "../index.html";
+    window.location.replace("../index.html");
   }, 1000);
 }
+
+redirectIfLoggedIn();
+window.addEventListener("pageshow", redirectIfLoggedIn);
+loginFormEl.addEventListener("submit", handle);
+emailEl.addEventListener("focus", function () {
+  resetInputError(emailEl);
+});
+passwordEl.addEventListener("focus", function () {
+  resetInputError(passwordEl);
+});

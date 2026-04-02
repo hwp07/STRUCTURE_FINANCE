@@ -5,6 +5,7 @@ const emailEl = document.getElementById("email");
 const passwordEl = document.getElementById("password");
 const confirmPasswordEl = document.getElementById("confirm-password");
 const successMessageEl = document.getElementById("success-message");
+const registerFormEl = document.getElementById("register-form");
 
 const emailErr = document.getElementById("email-error");
 const passwordErr = document.getElementById("password-error");
@@ -12,6 +13,14 @@ const confirmPasswordErr = document.getElementById("confirm-password-error");
 
 // Regex
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function redirectIfLoggedIn() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+    window.location.replace("../index.html");
+  }
+}
 
 // Helper
 function showError(input, errorEl, message) {
@@ -23,6 +32,10 @@ function showError(input, errorEl, message) {
 function clearError(input, errorEl) {
   errorEl.style.display = "none";
   input.classList.remove("input-error");
+}
+
+function resetFieldError(input, errorEl) {
+  clearError(input, errorEl);
 }
 
 function handle(e) {
@@ -70,7 +83,15 @@ function handle(e) {
   if (!isValid) return;
 
   // SAVE USER
-  const newUser = { email, password };
+  const newUser = {
+    id: Date.now(),
+    email,
+    password,
+    fullName: "",
+    phone: "",
+    gender: null,
+    status: true,
+  };
   users.push(newUser);
   localStorage.setItem("user", JSON.stringify(users));
 
@@ -78,6 +99,19 @@ function handle(e) {
   successMessageEl.style.display = "block";
 
   setTimeout(() => {
-    window.location.href = "login.html";
+    window.location.href = "../pages/login.html";
   }, 800);
 }
+
+redirectIfLoggedIn();
+window.addEventListener("pageshow", redirectIfLoggedIn);
+registerFormEl.addEventListener("submit", handle);
+emailEl.addEventListener("focus", function () {
+  resetFieldError(emailEl, emailErr);
+});
+passwordEl.addEventListener("focus", function () {
+  resetFieldError(passwordEl, passwordErr);
+});
+confirmPasswordEl.addEventListener("focus", function () {
+  resetFieldError(confirmPasswordEl, confirmPasswordErr);
+});

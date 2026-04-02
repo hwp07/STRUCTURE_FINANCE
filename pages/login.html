@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <style>
+      html.auth-pending body {
+        visibility: hidden;
+      }
+    </style>
+    <script>
+      (function () {
+        document.documentElement.classList.add("auth-pending");
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (currentUser) {
+          window.location.replace("../index.html");
+          return;
+        }
+
+        document.documentElement.classList.remove("auth-pending");
+      })();
+    </script>
     <link rel="stylesheet" href="../css/login.css" />
   </head>
   <body>
@@ -11,7 +29,7 @@
       <div class="container">
         <div class="login">
           <div class="title">
-            <p>🔐 Sign In</p>
+            <img src="../assets/images/Heading 2 → 🔐 Đăng nhập.svg" alt="" />
             <p class="successfully" id="success-msg">Sign In Successfully</p>
           </div>
 
@@ -19,7 +37,6 @@
             <div class="input">
               <div class="form-group" id="email-group">
                 <input type="email" id="email" placeholder="Email here..." />
-                <p class="err" id="email-err">Please enter your email...</p>
               </div>
 
               <div class="form-group" id="password-group">
@@ -28,17 +45,13 @@
                   id="password"
                   placeholder="Password here..."
                 />
-                <p class="err" id="password-err">
-                  Please enter your password...
-                </p>
               </div>
 
-              <button
-                class="login-btn"
-                id="login-btn"
-                type="submit"
-                onclick="handle(event)"
-              >
+              <p class="err form-error" id="login-err">
+                Please enter your email and password...
+              </p>
+
+              <button class="login-btn" id="login-btn" type="submit">
                 Sign In
               </button>
             </div>

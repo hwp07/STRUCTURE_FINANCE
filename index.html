@@ -4,6 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Structure Finance</title>
+    <style>
+      html.auth-pending body {
+        visibility: hidden;
+      }
+    </style>
+    <script>
+      (function () {
+        document.documentElement.classList.add("auth-pending");
+
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const loginPath = window.location.pathname.includes("/pages/")
+          ? "./login.html"
+          : "./pages/login.html";
+
+        if (!currentUser) {
+          window.location.replace(loginPath);
+          return;
+        }
+
+        document.documentElement.classList.remove("auth-pending");
+      })();
+    </script>
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
@@ -16,7 +38,7 @@
 
           <div class="header-option">
             <div class="option">
-              <select name="" id="optionHeader" onchange="handleOption()">
+              <select ect name="" id="optionHeader" onchange="handleOption()">
                 <option value="">Tài khoản</option>
                 <option value="logout">Đăng xuất</option>
               </select>

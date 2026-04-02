@@ -67,9 +67,11 @@ body {
 .err {
     color: red;
     font-size: 14px;
-    position: absolute;
-    margin-top: 44px;
     display: none;
+}
+
+.form-error {
+    margin-top: -12px;
 }
 
 .input-error {
