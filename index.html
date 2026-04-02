@@ -18,13 +18,18 @@
     </style>
     <script>
       (function () {
-        document.documentElement.classList.add("preload");
+        const root = document.documentElement;
+        root.classList.add("preload");
 
         const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
         if (!currentUser) {
           window.location.replace("./pages/login.html");
+          return;
         }
+
+        root.classList.remove("preload");
+        root.classList.add("page-ready");
       })();
     </script>
     <link rel="stylesheet" href="./css/index.css" />
@@ -61,17 +66,17 @@
 
       <div class="taskbar">
         <div class="taskbar-items">
-          <img src="../assets/images/Vector (1).png" alt="" />
+          <img src="./assets/images/Vector (1).png" alt="" />
           <a href="./index.html">Information</a>
         </div>
 
         <div class="taskbar-items">
-          <img src="../assets/images/Vector (2).png" alt="" />
+          <img src="./assets/images/Vector (2).png" alt="" />
           <a href="./pages/category.html">Category</a>
         </div>
 
         <div class="taskbar-items">
-          <img src="../assets/images/Vector (3).png" alt="" />
+          <img src="./assets/images/Vector (3).png" alt="" />
           <a href="./pages/history.html">History</a>
         </div>
       </div>

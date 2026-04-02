@@ -86,6 +86,7 @@ function revealPage() {
 
 checkAuth();
 revealPage();
+window.addEventListener("DOMContentLoaded", revealPage);
 window.addEventListener("pageshow", function () {
   checkAuth();
   revealPage();
