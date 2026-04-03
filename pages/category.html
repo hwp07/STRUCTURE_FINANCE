@@ -47,6 +47,7 @@
         </div>
       </header>
 
+      <!-- xác nhận đăng xuất -->
       <div class="logout-overlay" id="logout-overlay">
         <div class="logout">
           <p class="logout-title">Bạn có chắc chắn muốn đăng xuất không?</p>
@@ -54,6 +55,42 @@
           <div class="logout-confirm">
             <button class="confirm-btn" id="confirm-btn">Có</button>
             <button class="confirm-btn" id="cancel-btn">Không</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- xác nhận xóa -->
+      <div class="logout-overlay" id="delete-overlay">
+        <div class="logout">
+          <p class="logout-title">
+            Bạn có chắc chắn muốn xóa danh mục này không?
+          </p>
+
+          <div class="logout-confirm">
+            <button class="confirm-btn" id="confirm-delete-btn">Có</button>
+            <button class="confirm-btn" id="cancel-delete-btn">Không</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="update-overlay">
+        <div class="popup">
+          <div class="popup-header">
+            <h3>Update Category</h3>
+            <span class="close-btn" id="close-update-btn">&times;</span>
+          </div>
+
+          <div class="popup-body">
+            <label>Category Name <span>*</span></label>
+            <input type="text" id="update-name-input" />
+
+            <label>Limit (VND) <span>*</span></label>
+            <input type="text" id="update-max-price" />
+          </div>
+
+          <div class="popup-footer">
+            <button class="btn cancel" id="cancel-update-btn">Cancel</button>
+            <button class="btn save" id="save-update-btn">Save</button>
           </div>
         </div>
       </div>
@@ -101,12 +138,32 @@
 
             <div class="form">
               <div class="input-group">
-                <input type="text" placeholder="Tên danh mục" id="name-input" />
-                <span class="arrow">▾</span>
+                <!-- <input type="text" placeholder="Tên danh mục" id="name-input" />
+                <span class="arrow">▾</span> -->
+
+                <select name="" id="name-input">
+                  <option value="">Chọn danh mục</option>
+                  <option value="food">Ăn uống</option>
+                  <option value="move">Đi lại</option>
+                  <option value="shopping">Mua sắm</option>
+                  <option value="entertainment">Giải trí</option>
+                  <option value="other">Chi phí khác</option>
+                </select>
+                <p class="err-input" id="err-name-input">
+                  Vui lòng chọn danh mục!
+                </p>
               </div>
 
-              <input type="text" placeholder="Giới hạn (VND)" id="max-price" />
-
+              <div class="input-group">
+                <input
+                  type="text"
+                  placeholder="Giới hạn (VND)"
+                  id="max-price"
+                />
+                <p class="err-input" id="err-max-price">
+                  Vui lòng nhập số tiền!
+                </p>
+              </div>
               <button class="btn" id="btn-add" onclick="btnAdd(event)">
                 Thêm danh mục
               </button>

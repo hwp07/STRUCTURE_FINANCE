@@ -158,9 +158,11 @@ h3 {
     display: flex;
     gap: 22px;
     margin-bottom: 22px;
+    align-items: flex-start;
 }
 
-.form input {
+.form input,
+select {
     padding: 11px 9px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -173,11 +175,25 @@ h3 {
     flex: 1;
 }
 
-.input-group input {
+.input-group input,
+select {
     width: 100%;
+    height: 100%;
 }
 
-.arrow {
+.form input.input-error,
+.form select.input-error {
+    border: 1px solid red;
+}
+
+.err-input {
+    color: red;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+}
+
+* .arrow {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -228,6 +244,7 @@ h3 {
     justify-content: center;
     font-size: 22px;
     margin-right: 10px;
+    color: #111827;
 }
 
 .content .title {
@@ -255,6 +272,31 @@ h3 {
 .actions button {
     background-color: white;
     border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.actions button:hover {
+    background-color: #f3f4f6;
+    transform: scale(1.1);
+}
+
+.actions .delete-btn:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.actions .edit-btn:hover {
+    background-color: #dbeafe;
+    color: #2563eb;
 }
 
 
@@ -352,20 +394,24 @@ h3 {
     transition: 0.2s;
 }
 
-#confirm-btn {
+#confirm-btn,
+#confirm-delete-btn {
     background: #ef4444;
     color: white;
 }
 
-#confirm-btn:hover {
+#confirm-btn:hover,
+#confirm-delete-btn:hover {
     background: #dc2626;
 }
 
-#cancel-btn {
+#cancel-btn,
+#cancel-delete-btn {
     background: #e5e7eb;
 }
 
-#cancel-btn:hover {
+#cancel-btn:hover,
+#cancel-delete-btn:hover {
     background: #d1d5db;
 }
 
@@ -379,4 +425,90 @@ h3 {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+
+/* popup update */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Popup */
+.popup {
+    width: 500px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Header */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.popup-header h3 {
+    margin: 0;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Body */
+.popup-body label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.popup-body span {
+    color: red;
+}
+
+.popup-body input,
+.popup-body select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Footer */
+.popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.save {
+    background: #4a3aff;
+    color: #fff;
 }
