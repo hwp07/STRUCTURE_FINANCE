@@ -21,9 +21,9 @@
         const root = document.documentElement;
         root.classList.add("preload");
 
-        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        const currentUserId = localStorage.getItem("currentUserId");
 
-        if (!currentUser) {
+        if (!currentUserId) {
           window.location.replace("./pages/login.html");
           return;
         }
@@ -35,8 +35,8 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    <div class="page">
-      <header class="header">
+    <div class="page" id="page">
+      <header class="header" id="header">
         <div class="header-box">
           <div class="header-title">
             <p>📒 Tài Chính Cá Nhân</p>
@@ -44,7 +44,7 @@
 
           <div class="header-option">
             <div class="option">
-              <select ect name="" id="optionHeader" onchange="handleOption()">
+              <select id="select-account" onchange="handleOption()">
                 <option value="">Tài khoản</option>
                 <option value="logout">Đăng xuất</option>
               </select>
@@ -53,19 +53,21 @@
         </div>
       </header>
 
+      <!-- LOGOUT -->
       <div class="logout-overlay" id="logout-overlay">
         <div class="logout">
           <p class="logout-title">Bạn có chắc chắn muốn đăng xuất không?</p>
 
           <div class="logout-confirm">
-            <button class="confirm-btn" id="confirm-btn">Có</button>
-            <button class="confirm-btn" id="cancel-btn">Không</button>
+            <button class="confirm-btn" id="btn-confirm-logout">Có</button>
+            <button class="confirm-btn" id="btn-cancel-logout">Không</button>
           </div>
         </div>
       </div>
 
-      <div class="taskbar">
-        <div class="taskbar-items">
+      <!-- TASKBAR -->
+      <div class="taskbar" id="taskbar">
+        <div class="taskbar-items active">
           <img src="./assets/images/Vector (1).png" alt="" />
           <a href="./index.html">Information</a>
         </div>
@@ -81,63 +83,88 @@
         </div>
       </div>
 
-      <section class="banner">
+      <!-- BANNER -->
+      <section class="banner" id="banner">
         <h2 class="banner-title">🎯 Kiểm soát chi tiêu thông minh</h2>
         <p class="banner-text">
           Theo dõi ngân sách và thu chi hằng tháng dễ dàng
         </p>
       </section>
 
-      <main class="main">
+      <!-- MAIN -->
+      <main class="main" id="main">
         <div class="main-content">
           <p class="main-title">📊 Quản Lý Tài Chính Cá Nhân</p>
 
-          <div class="money-left">
+          <!-- MONEY LEFT -->
+          <div class="money-left" id="money-left">
             <p class="money-left-label">Số tiền còn lại</p>
-            <p class="money-left-value">0 VND</p>
+            <p class="money-left-value" id="text-money-left">0 VND</p>
           </div>
 
+          <!-- MONTH -->
           <div class="input-box month-box">
             <label>📅 Chọn tháng:</label>
-            <input type="month" />
+            <input type="month" id="input-month" />
+            <p class="err-month" id="err-month">Vui lòng chọn tháng!</p>
           </div>
 
+          <!-- BUDGET -->
           <div class="input-box budget-box">
             <label>💰 Ngân sách tháng:</label>
-            <input type="number" placeholder="VD: 5000000" />
-            <button class="button-save">Lưu</button>
+            <input type="number" id="input-budget" placeholder="VD: 5000000" />
+            <button class="button-save" id="btn-save-budget">Lưu</button>
+            <p class="err-budget" id="err-budget">Vui lòng nhập số tiền!</p>
           </div>
 
+          <!-- USER INFO -->
           <p class="extra-title">Quản Lý Thông tin cá nhân</p>
+
           <div class="infor-user">
-            <form class="form">
+            <form class="form" id="form-user">
               <div class="form-row">
                 <div class="form-group">
                   <label>Name <span>*</span></label>
-                  <input type="text" placeholder="Nguyen Van A" />
+                  <input
+                    type="text"
+                    id="input-name"
+                    placeholder="Nguyen Van A"
+                  />
                 </div>
 
                 <div class="form-group">
                   <label>Email <span>*</span></label>
-                  <input type="email" placeholder="nguyenvana@gmail.com" />
+                  <input
+                    type="email"
+                    id="input-email"
+                    placeholder="nguyenvana@gmail.com"
+                  />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label>Phone <span>*</span></label>
-                  <input type="text" placeholder="0987654321" />
+                  <input
+                    type="text"
+                    id="input-phone"
+                    placeholder="0987654321"
+                  />
                 </div>
 
                 <div class="form-group">
                   <label>Gender <span>*</span></label>
-                  <input type="text" placeholder="Male" />
+                  <input type="text" id="input-gender" placeholder="Male" />
                 </div>
               </div>
 
               <div class="form-actions">
-                <button class="btn outline">Change Information</button>
-                <button class="btn outline">Change Password</button>
+                <button class="btn outline" id="btn-change-info">
+                  Change Information
+                </button>
+                <button class="btn outline" id="btn-change-password">
+                  Change Password
+                </button>
               </div>
             </form>
           </div>

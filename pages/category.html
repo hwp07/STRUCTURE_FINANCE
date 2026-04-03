@@ -19,9 +19,9 @@
     <script>
       (function () {
         document.documentElement.classList.add("preload");
-        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        const currentUserId = localStorage.getItem("currentUserId");
 
-        if (!currentUser) {
+        if (!currentUserId) {
           window.location.replace("./login.html");
         }
       })();
@@ -64,7 +64,7 @@
           <a href="../index.html">Information</a>
         </div>
 
-        <div class="taskbar-items">
+        <div class="taskbar-items active">
           <img src="../assets/images/Vector (2).png" alt="" />
           <a href="./category.html">Category</a>
         </div>
@@ -93,7 +93,7 @@
 
           <div class="input-box month-box">
             <label>📅 Chọn tháng:</label>
-            <input type="month" />
+            <input type="month" id="month-selector" />
           </div>
 
           <div class="container">
@@ -101,17 +101,19 @@
 
             <div class="form">
               <div class="input-group">
-                <input type="text" placeholder="Tên danh mục" />
+                <input type="text" placeholder="Tên danh mục" id="name-input" />
                 <span class="arrow">▾</span>
               </div>
 
-              <input type="text" placeholder="Giới hạn (VND)" />
+              <input type="text" placeholder="Giới hạn (VND)" id="max-price" />
 
-              <button class="btn">Thêm danh mục</button>
+              <button class="btn" id="btn-add" onclick="btnAdd(event)">
+                Thêm danh mục
+              </button>
             </div>
 
-            <div class="list">
-              <div class="card">
+            <div class="list" id="list-card">
+              <!-- <div class="card">
                 <div class="icon">$</div>
                 <div class="content">
                   <p class="title">Tiền tích lũy</p>
@@ -193,7 +195,7 @@
                   <span>✕</span>
                   <span>✎</span>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

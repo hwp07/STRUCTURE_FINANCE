@@ -150,6 +150,35 @@ input {
     margin-left: 25px;
 }
 
+.err-month {
+    color: red;
+    font-size: 14px;
+    position: relative;
+    left: 50px;
+    top: 5px;
+    display: none;
+}
+
+.input-box input.input-error {
+    border: 1px solid red;
+}
+
+.input-box input.input-error::placeholder {
+    color: red;
+}
+
+.err-budget {
+    color: red;
+    font-size: 14px;
+    position: relative;
+    left: 20px;
+    top: 5px;
+    display: none;
+}
+
+
+
+
 .extra-title {
     color: #4f46e5;
     text-align: center;
@@ -233,7 +262,7 @@ input {
     padding: 0 25px;
     border-radius: 5px;
     background: #f3f4f6;
-    border: 2px solid transparent;
+    border: 2px solid #4f46e5;
     transition: 0.3s;
 }
 
@@ -250,22 +279,18 @@ input {
     font-weight: 400;
 }
 
-.taskbar-items:first-child {
+.taskbar-items.active {
     background: linear-gradient(90deg, #4f46e5, #4338ca);
     color: white;
+    border-color: transparent;
 }
 
-.taskbar-items:first-child a {
+.taskbar-items.active a {
     color: white;
 }
 
-.taskbar-items:first-child img {
+.taskbar-items.active img {
     filter: brightness(0) invert(1);
-}
-
-.taskbar-items:nth-child(2),
-.taskbar-items:nth-child(3) {
-    border: 2px solid #4f46e5;
 }
 
 .logout-overlay {
@@ -313,20 +338,20 @@ input {
     transition: 0.2s;
 }
 
-#confirm-btn {
+#btn-confirm-logout {
     background: #ef4444;
     color: white;
 }
 
-#confirm-btn:hover {
+#btn-confirm-logout:hover {
     background: #dc2626;
 }
 
-#cancel-btn {
+#btn-cancel-logout {
     background: #e5e7eb;
 }
 
-#cancel-btn:hover {
+#btn-cancel-logout:hover {
     background: #d1d5db;
 }
 

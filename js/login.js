@@ -7,9 +7,9 @@ let loginFormEl = document.getElementById("login-form");
 let loginErrorEl = document.getElementById("login-err");
 
 function redirectIfLoggedIn() {
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const currentUserId = localStorage.getItem("currentUserId");
 
-  if (currentUser) {
+  if (currentUserId) {
     window.location.replace("../index.html");
   }
 }
@@ -63,7 +63,7 @@ function handle(e) {
   if (!isValid) return;
 
   // SUCCESS
-  sessionStorage.setItem("currentUser", JSON.stringify(userByEmail));
+  localStorage.setItem("currentUserId", String(userByEmail.id));
 
   successMessageEl.style.display = "block";
 

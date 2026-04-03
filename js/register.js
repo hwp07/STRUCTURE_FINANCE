@@ -15,9 +15,9 @@ const confirmPasswordErr = document.getElementById("confirm-password-error");
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function redirectIfLoggedIn() {
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const currentUserId = localStorage.getItem("currentUserId");
 
-  if (currentUser) {
+  if (currentUserId) {
     window.location.replace("../index.html");
   }
 }

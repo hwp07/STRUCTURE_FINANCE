@@ -211,6 +211,13 @@ h3 {
     background: #fff;
 }
 
+.empty-card {
+    grid-column: 1 / -1;
+    justify-content: center;
+    min-height: 96px;
+    text-align: center;
+}
+
 .icon {
     width: 45px;
     height: 45px;
@@ -239,9 +246,15 @@ h3 {
     right: 11px;
     top: 11px;
     display: flex;
+    gap: 4px;
     flex-direction: column;
     font-size: 14px;
     color: black;
+}
+
+.actions button {
+    background-color: white;
+    border: none;
 }
 
 
@@ -263,7 +276,7 @@ h3 {
     padding: 0 25px;
     border-radius: 5px;
     background: #f3f4f6;
-    border: 2px solid transparent;
+    border: 2px solid #4f46e5;
     transition: 0.3s;
 }
 
@@ -280,25 +293,18 @@ h3 {
     font-weight: 400;
 }
 
-.taskbar-items:first-child {
+.taskbar-items.active {
     background: linear-gradient(90deg, #4f46e5, #4338ca);
     color: white;
+    border-color: transparent;
 }
 
-.taskbar-items:first-child a {
+.taskbar-items.active a {
     color: white;
 }
 
-.taskbar-items:first-child img {
+.taskbar-items.active img {
     filter: brightness(0) invert(1);
-}
-
-.taskbar-items:nth-child(2) {
-    border: 2px solid #4f46e5;
-}
-
-.taskbar-items:nth-child(3) {
-    border: 2px solid #4f46e5;
 }
 
 .logout-overlay {

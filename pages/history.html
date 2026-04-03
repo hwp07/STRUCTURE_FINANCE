@@ -19,9 +19,9 @@
     <script>
       (function () {
         document.documentElement.classList.add("preload");
-        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        const currentUserId = localStorage.getItem("currentUserId");
 
-        if (!currentUser) {
+        if (!currentUserId) {
           window.location.replace("./login.html");
         }
       })();
@@ -69,7 +69,7 @@
           <a href="./category.html">Category</a>
         </div>
 
-        <div class="taskbar-items">
+        <div class="taskbar-items active">
           <img src="../assets/images/Vector (3).png" alt="" />
           <a href="./history.html">History</a>
         </div>
