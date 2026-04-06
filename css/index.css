@@ -224,10 +224,29 @@ input {
     font-size: 16px;
 }
 
+.form-group input.input-error {
+    border: 1px solid #ef4444;
+}
+
+.form-error {
+    display: none;
+    margin-top: 6px;
+    color: #ef4444;
+    font-size: 13px;
+}
+
 .form-actions {
     display: flex;
     gap: 19px;
     margin-top: 33px;
+}
+
+.form-success {
+    display: none;
+    margin-top: 14px;
+    color: #16a34a;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .btn {
@@ -241,7 +260,7 @@ input {
 }
 
 .outline {
-    border: 2px solid #4f46e5;
+    border: 2px solid #4f46e5 !important;
 }
 
 .taskbar {
@@ -365,4 +384,207 @@ input {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Change Information */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* modal */
+.modal {
+    width: 500px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* body */
+.modal-body {
+    margin-top: 15px;
+}
+
+.modal-body label {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.modal-body label span {
+    color: red;
+}
+
+.modal-body input,
+.modal-body select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.modal-body input:focus,
+.modal-body select:focus {
+    border-color: #6c63ff;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel {
+    background: #f1f1f1;
+}
+
+.save {
+    background: #5b4bff;
+    color: white;
+}
+
+/* Change Password */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* modal */
+.modal {
+    width: 600px;
+    background: #f7f7f9;
+    border-radius: 10px;
+    padding: 20px 25px;
+}
+
+/* header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.close {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* body */
+.modal-body {
+    margin-top: 15px;
+}
+
+.modal-body label {
+    display: block;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.modal-body span {
+    color: red;
+}
+
+.modal-body input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #cfd4dc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* input có icon */
+.input-icon {
+    position: relative;
+}
+
+.input-icon input {
+    padding-right: 40px;
+}
+
+.input-icon .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+/* divider */
+.divider {
+    margin: 25px 0 15px;
+    border-top: 1px solid #ddd;
+}
+
+/* footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel {
+    background: #e5e5e5;
+}
+
+.save {
+    background: #4f46e5;
+    color: white;
 }

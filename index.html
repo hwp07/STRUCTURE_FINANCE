@@ -91,6 +91,98 @@
         </p>
       </section>
 
+      <!-- Change Information -->
+      <div class="overlay" id="change-info-overlay" style="display: none">
+        <div class="modal">
+          <div class="modal-header">
+            <h2>Change Information</h2>
+            <span class="close" id="change-info-close">&times;</span>
+          </div>
+
+          <div class="modal-body">
+            <label>Name <span>*</span></label>
+            <input type="text" id="modal-input-name" />
+            <p class="form-error" id="modal-err-name">Name is required</p>
+
+            <label>Email <span>*</span></label>
+            <input type="email" id="modal-input-email" />
+            <p class="form-error" id="modal-err-email">Invalid email</p>
+
+            <label>Phone <span>*</span></label>
+            <input type="text" id="modal-input-phone" />
+            <p class="form-error" id="modal-err-phone">Phone is required</p>
+
+            <label>Gender <span>*</span></label>
+            <select id="modal-input-gender">
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <p class="form-error" id="modal-err-gender">Gender is required</p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn cancel" id="change-info-cancel" type="button">
+              Cancel
+            </button>
+            <button class="btn save" id="change-info-save" type="button">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Password -->
+      <div class="overlay" id="change-password-overlay" style="display: none">
+        <div class="modal">
+          <!-- Header -->
+          <div class="modal-header">
+            <h2>Change Password</h2>
+            <span class="close" id="change-password-close">&times;</span>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+            <label>Old Password <span>*</span></label>
+            <input type="password" id="change-password-old" />
+            <p class="form-error" id="change-password-err-old">
+              Old password is required
+            </p>
+
+            <label>New Password <span>*</span></label>
+            <input type="password" id="change-password-new" />
+            <p class="form-error" id="change-password-err-new">
+              New password is required
+            </p>
+
+            <label>Confirm New Password <span>*</span></label>
+            <input type="password" id="change-password-confirm" />
+            <p class="form-error" id="change-password-err-confirm">
+              Passwords do not match
+            </p>
+          </div>
+
+          <!-- Footer -->
+          <div class="divider"></div>
+
+          <div class="modal-footer">
+            <button
+              class="btn cancel"
+              id="change-password-cancel"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button class="btn save" id="change-password-save" type="button">
+              Save
+            </button>
+          </div>
+          <p class="form-success" id="change-password-success">
+            Change password successfully
+          </p>
+        </div>
+      </div>
+
       <!-- MAIN -->
       <main class="main" id="main">
         <div class="main-content">
@@ -130,6 +222,7 @@
                     id="input-name"
                     placeholder="Nguyen Van A"
                   />
+                  <p class="form-error" id="err-info-name">Name is required</p>
                 </div>
 
                 <div class="form-group">
@@ -139,6 +232,7 @@
                     id="input-email"
                     placeholder="nguyenvana@gmail.com"
                   />
+                  <p class="form-error" id="err-info-email">Invalid email</p>
                 </div>
               </div>
 
@@ -150,19 +244,29 @@
                     id="input-phone"
                     placeholder="0987654321"
                   />
+                  <p class="form-error" id="err-info-phone">
+                    Phone is required
+                  </p>
                 </div>
 
                 <div class="form-group">
                   <label>Gender <span>*</span></label>
                   <input type="text" id="input-gender" placeholder="Male" />
+                  <p class="form-error" id="err-info-gender">
+                    Gender is required
+                  </p>
                 </div>
               </div>
 
               <div class="form-actions">
-                <button class="btn outline" id="btn-change-info">
+                <button class="btn outline" id="btn-change-info" type="button">
                   Change Information
                 </button>
-                <button class="btn outline" id="btn-change-password">
+                <button
+                  class="btn outline"
+                  id="btn-change-password"
+                  type="button"
+                >
                   Change Password
                 </button>
               </div>

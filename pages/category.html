@@ -30,7 +30,7 @@
   </head>
   <body>
     <div class="page">
-      <header class="header">
+      <header class="header" id="header">
         <div class="header-box">
           <div class="header-title">
             <p>📒 Tài Chính Cá Nhân</p>
@@ -38,7 +38,7 @@
 
           <div class="header-option">
             <div class="option">
-              <select name="" id="optionHeader" onchange="handleOption()">
+              <select id="select-account" onchange="handleOption()">
                 <option value="">Tài khoản</option>
                 <option value="logout">Đăng xuất</option>
               </select>
@@ -83,9 +83,15 @@
           <div class="popup-body">
             <label>Category Name <span>*</span></label>
             <input type="text" id="update-name-input" />
+            <p class="err-input popup-err-input" id="update-err-name-input">
+              Vui lòng nhập tên danh mục!
+            </p>
 
             <label>Limit (VND) <span>*</span></label>
             <input type="text" id="update-max-price" />
+            <p class="err-input popup-err-input" id="update-err-max-price">
+              Vui lòng nhập số tiền!
+            </p>
           </div>
 
           <div class="popup-footer">
@@ -131,6 +137,9 @@
           <div class="input-box month-box">
             <label>📅 Chọn tháng:</label>
             <input type="month" id="month-selector" />
+            <p class="err-input err-month-category" id="err-month-selector">
+              Vui lòng chọn tháng!
+            </p>
           </div>
 
           <div class="container">

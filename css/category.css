@@ -162,7 +162,7 @@ h3 {
 }
 
 .form input,
-select {
+.form select {
     padding: 11px 9px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -176,7 +176,7 @@ select {
 }
 
 .input-group input,
-select {
+.input-group select {
     width: 100%;
     height: 100%;
 }
@@ -186,11 +186,20 @@ select {
     border: 1px solid red;
 }
 
+.input-box input.input-error {
+    border: 1px solid red;
+}
+
 .err-input {
     color: red;
     font-size: 13px;
     margin-top: 6px;
     display: none;
+}
+
+.err-month-category {
+    text-align: center;
+    margin-left: 50px;
 }
 
 * .arrow {
@@ -487,6 +496,15 @@ select {
     border-radius: 5px;
 }
 
+.popup-body input.input-error {
+    border: 1px solid red;
+}
+
+.popup-err-input {
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
 /* Footer */
 .popup-footer {
     display: flex;
@@ -496,7 +514,7 @@ select {
 }
 
 .btn {
-    padding: 8px 18px;
+    padding: 12px 18px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
