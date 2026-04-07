@@ -1,7 +1,7 @@
 // let user = [
 //   {
 //     id: 1,
-//     fullName: "Nguyá»…n VÄƒn A",
+//     fullName: "Nguyễn Văn A",
 //     email: "nguyenvana@gmail.com",
 //     password: "123456",
 //     phone: "0987654321",
@@ -10,7 +10,7 @@
 //   },
 //   {
 //     id: 2,
-//     fullName: "Pháº¡m Thá»‹ B",
+//     fullName: "Phạm Thị B",
 //     email: "phamthib@gmail.com",
 //     password: "123456",
 //     phone: "0987654321",
@@ -1043,6 +1043,8 @@ let historyAlertContent = document.querySelector(".alert-content p");
 let historyItemsPerPage = 5;
 let currentHistoryPage = 1;
 let lastHistoryWarningKey = "";
+let historyAlertTimeoutId = null;
+const HISTORY_ALERT_AUTO_HIDE_MS = 3000;
 
 function getNormalizedMonth(value) {
   if (!value) return "";
@@ -1259,10 +1261,56 @@ function getTransactionsByMonth(month) {
   );
 }
 
+function normalizeHistoryCategoryName(value) {
+  let normalizedValue = String(value || "").trim().toLowerCase();
+  return normalizedValue || "khac";
+}
+
+function getResolvedHistoryCategoryName(item) {
+  return (
+    String(
+      item.categoryName ||
+        getCategoriesByMonth(item.createdDate).find(
+          (category) => category.id === item.categoryId,
+        )?.description ||
+        "Khac",
+    ).trim() || "Khac"
+  );
+}
+
+function getUniqueHistoryCategories(month) {
+  let uniqueCategories = new Map();
+
+  getCategoriesByMonth(month).forEach((item) => {
+    let label = String(item.description || "").trim();
+
+    if (!label) return;
+
+    let categoryKey = normalizeHistoryCategoryName(label);
+
+    if (!uniqueCategories.has(categoryKey)) {
+      uniqueCategories.set(categoryKey, item);
+    }
+  });
+
+  return Array.from(uniqueCategories.values());
+}
+
+function getHistoryCategoryBudget(month, categoryName) {
+  let categoryKey = normalizeHistoryCategoryName(categoryName);
+
+  return getCategoriesByMonth(month)
+    .filter(
+      (item) =>
+        normalizeHistoryCategoryName(item.description || "") === categoryKey,
+    )
+    .reduce((sum, item) => sum + Number(item.budget || 0), 0);
+}
+
 function populateHistoryCategoryOptions(month) {
   if (!historyCategorySelect) return;
 
-  let categories = getCategoriesByMonth(month);
+  let categories = getUniqueHistoryCategories(month);
   let selectedValue = historyCategorySelect.value;
   let options = ['<option value="">Danh mục chi tiêu</option>'];
 
@@ -1291,7 +1339,7 @@ function getFilteredHistoryItems(items) {
   }
 
   return items.filter((item) => {
-    let categoryName = String(item.categoryName || "").toLowerCase();
+    let categoryName = getResolvedHistoryCategoryName(item).toLowerCase();
     let note = String(item.note || item.description || "").toLowerCase();
     let amount = String(item.total || "");
     let amountFormatted = Number(item.total || 0).toLocaleString("vi-vn");
@@ -1309,13 +1357,8 @@ function getGroupedHistoryItems(items) {
   let groupedMap = new Map();
 
   items.forEach((item) => {
-    let categoryName =
-      item.categoryName ||
-      getCategoriesByMonth(item.createdDate).find(
-        (category) => category.id === item.categoryId,
-      )?.description ||
-      "Khac";
-    let groupKey = String(item.categoryId || categoryName);
+    let categoryName = getResolvedHistoryCategoryName(item);
+    let groupKey = normalizeHistoryCategoryName(categoryName);
     let existingGroup = groupedMap.get(groupKey);
 
     if (!existingGroup) {
@@ -1346,32 +1389,46 @@ function getGroupedHistoryItems(items) {
 }
 
 function getOverBudgetHistoryGroups(month) {
-  let categories = getCategoriesByMonth(month);
   let groupedItems = getGroupedHistoryItems(getTransactionsByMonth(month));
 
-  return groupedItems.filter((item) => {
-    let matchedCategory = categories.find(
-      (category) => category.id === item.categoryId,
+  return groupedItems
+    .map((item) => ({
+      ...item,
+      budget: getHistoryCategoryBudget(month, item.categoryName),
+    }))
+    .filter(
+      (item) =>
+        Number(item.budget || 0) > 0 &&
+        Number(item.total || 0) > Number(item.budget || 0),
     );
-
-    if (!matchedCategory) return false;
-
-    return Number(item.total || 0) > Number(matchedCategory.budget || 0);
-  });
 }
 
 function showHistoryAlert(message) {
   if (!historyAlertBox || !historyAlertContent) return;
+
+  if (historyAlertTimeoutId) {
+    clearTimeout(historyAlertTimeoutId);
+    historyAlertTimeoutId = null;
+  }
 
   historyAlertContent.textContent = message;
   historyAlertBox.style.display = "flex";
   // Trigger reflow to ensure display change takes effect
   historyAlertBox.offsetHeight;
   historyAlertBox.classList.add("show");
+
+  historyAlertTimeoutId = setTimeout(() => {
+    hideHistoryAlert();
+  }, HISTORY_ALERT_AUTO_HIDE_MS);
 }
 
 function hideHistoryAlert() {
   if (!historyAlertBox) return;
+
+  if (historyAlertTimeoutId) {
+    clearTimeout(historyAlertTimeoutId);
+    historyAlertTimeoutId = null;
+  }
 
   historyAlertBox.classList.remove("show");
   // Wait for transition to complete before hiding
@@ -1400,7 +1457,10 @@ function notifyHistoryBudgetWarning(month, force = false) {
   }
 
   let warningKey = exceededGroups
-    .map((item) => `${item.categoryId}:${item.total}`)
+    .map(
+      (item) =>
+        `${normalizeHistoryCategoryName(item.categoryName)}:${item.total}:${item.budget}`,
+    )
     .join("|");
 
   if (!force && lastHistoryWarningKey === `${normalizedMonth}|${warningKey}`) {
@@ -1416,7 +1476,14 @@ function notifyHistoryBudgetWarning(month, force = false) {
     )
     .join("; ");
 
-  showHistoryAlert(message);
+  let mergedMessage = exceededGroups
+    .map(
+      (item) =>
+        `Danh muc "${item.categoryName}" vuot gioi han: ${Number(item.total || 0).toLocaleString("vi-vn")} / ${Number(item.budget || 0).toLocaleString("vi-vn")} VND`,
+    )
+    .join("; ");
+
+  showHistoryAlert(mergedMessage);
 }
 
 function validateHistoryForm() {
@@ -1450,22 +1517,10 @@ function validateHistoryForm() {
   return isValid;
 }
 
-function validateHistorySearch() {
-  hideError(historySearchInput, historyErrSearch);
-
-  if (historySearchInput?.value.trim()) {
-    return true;
-  }
-
-  showError(historySearchInput, historyErrSearch);
-  return false;
-}
-
 function renderHistoryTable(items) {
   if (!historyTableBody) return;
 
-  let groupedItems = getGroupedHistoryItems(items);
-  let filteredItems = getFilteredHistoryItems(groupedItems);
+  let filteredItems = getFilteredHistoryItems(items);
 
   if (!filteredItems || filteredItems.length === 0) {
     historyTableBody.innerHTML = `
@@ -1506,12 +1561,7 @@ function renderHistoryTable(items) {
   historyTableBody.innerHTML = paginatedItems
     .map((item, index) => {
       let amount = Number(item.total || 0).toLocaleString("vi-vn");
-      let categoryName =
-        item.categoryName ||
-        getCategoriesByMonth(item.createdDate).find(
-          (category) => category.id === item.categoryId,
-        )?.description ||
-        "Khac";
+      let categoryName = getResolvedHistoryCategoryName(item);
       let note = item.note || item.description || "";
 
       return `
@@ -1524,9 +1574,7 @@ function renderHistoryTable(items) {
             <img
               src="../assets/images/Trash.png"
               alt="Delete"
-              onclick="deleteHistoryGroup(${item.groupedTransactionIds
-                .map((transactionId) => Number(transactionId))
-                .join(",")})"
+              onclick="deleteHistoryGroup(${Number(item.id)})"
               style="cursor: pointer"
             />
           </td>
@@ -1586,7 +1634,7 @@ function renderHistoryPagination(totalPages) {
 function goToHistoryPage(page) {
   let selectedMonth = historyMonthSelector?.value || "";
   let totalItems = getFilteredHistoryItems(
-    getGroupedHistoryItems(getTransactionsByMonth(selectedMonth)),
+    getTransactionsByMonth(selectedMonth),
   ).length;
   let totalPages = Math.max(1, Math.ceil(totalItems / historyItemsPerPage));
 
@@ -1708,8 +1756,11 @@ if (historySortSelect) {
 
 if (historySearchInput) {
   historySearchInput.addEventListener("input", function () {
-    if (historySearchInput.value.trim()) {
-      hideError(historySearchInput, historyErrSearch);
+    hideError(historySearchInput, historyErrSearch);
+
+    if (!historySearchInput.value.trim()) {
+      currentHistoryPage = 1;
+      renderByMonth(historyMonthSelector?.value || "");
     }
   });
 
@@ -1717,15 +1768,14 @@ if (historySearchInput) {
     if (event.key !== "Enter") return;
 
     event.preventDefault();
+    currentHistoryPage = 1;
+    renderByMonth(historyMonthSelector?.value || "");
   });
 }
 
 if (historySearchBtn) {
   historySearchBtn.addEventListener("click", function () {
-    if (!validateHistorySearch()) {
-      return;
-    }
-
+    hideError(historySearchInput, historyErrSearch);
     currentHistoryPage = 1;
     renderByMonth(historyMonthSelector?.value || "");
   });
